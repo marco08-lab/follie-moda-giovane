@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follie Moda Giovane — Cesano Boscone</title>
+<meta name="description" content="Follie Moda Giovane, negozio di abbigliamento donna e uomo a Cesano Boscone. Blue Joint, Cristina Gavioli, Navigare, Urban Ring.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1E7D6;
+    --paper-2:#EADDC4;
+    --ink:#221F2B;
+    --coral:#E8503A;
+    --denim:#3A5A80;
+    --mustard:#E3A72E;
+    --muted:#6E6558;
+    --line:#D9CBB0;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Bebas Neue',sans-serif;
+    letter-spacing:.02em;
+    line-height:.92;
+    margin:0;
+    font-weight:400;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  section{padding:88px 0;}
+  .hairline{border-bottom:1px solid var(--line);}
+
+  /* ---------- Tag chip signature element ---------- */
+  .tag{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    padding:7px 16px 7px 26px;
+    font-size:12.5px;
+    white-space:nowrap;
+  }
+  .tag::before{
+    content:"";
+    position:absolute;
+    left:10px; top:50%;
+    width:6px;height:6px;
+    border:1.5px solid var(--ink);
+    border-radius:50%;
+    background:var(--paper);
+    transform:translateY(-50%);
+  }
+  .tag.--coral{background:var(--coral);color:var(--paper);border-color:var(--coral);}
+  .tag.--coral::before{border-color:var(--paper);background:var(--coral);}
+  .tag.--denim{background:var(--denim);color:var(--paper);border-color:var(--denim);}
+  .tag.--denim::before{border-color:var(--paper);background:var(--denim);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(241,231,214,.92);
+    backdrop-filter:blur(6px);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:.03em;}
+  .logo span{color:var(--coral);}
+  nav ul{list-style:none; display:flex; gap:6px; margin:0; padding:0;}
+  nav a.tag{font-size:11.5px; padding:6px 13px 6px 22px;}
+  nav a.tag::before{width:5px;height:5px;left:9px;}
+  .menu-btn{display:none;background:none;border:1.5px solid var(--ink);padding:8px 10px;font-family:'IBM Plex Mono';}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 96px;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+  .eyebrow{margin-bottom:18px;}
+  .hero h1{font-size:clamp(56px,8vw,108px);}
+  .hero h1 .line2{color:var(--coral);}
+  .hero p.lede{
+    max-width:46ch; margin:26px 0 32px; color:var(--muted); font-size:17px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; align-items:center;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.06em;
+    font-size:13px; padding:14px 22px; border:1.5px solid var(--ink); display:inline-flex; gap:8px; align-items:center;
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn.--solid{background:var(--ink); color:var(--paper);}
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--ink);}
+  .btn.--solid:hover{box-shadow:4px 4px 0 var(--coral); background:var(--coral); border-color:var(--coral); color:var(--ink);}
+  .addr-chip{margin-top:34px;}
+
+  /* rack illustration */
+  .rack{position:relative;}
+  .rack svg{overflow:visible;}
+  .float{animation:float 6s ease-in-out infinite;}
+  .float.--d2{animation-delay:-2s;}
+  .float.--d3{animation-delay:-4s;}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(var(--r,0deg));}50%{transform:translateY(-9px) rotate(var(--r,0deg));}}
+
+  /* ---------- Section headers ---------- */
+  .sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:44px; flex-wrap:wrap;}
+  .sec-head h2{font-size:clamp(38px,5vw,58px);}
+  .sec-head .num{color:var(--muted); font-size:12.5px;}
+
+  /* ---------- Brands ---------- */
+  .brand-row{display:flex; flex-wrap:wrap; gap:16px;}
+  .brand-row .tag{font-size:16px; padding:14px 26px 14px 36px; font-family:'IBM Plex Mono'; font-weight:600;}
+  .brand-row .tag::before{width:8px;height:8px;left:14px;}
+  .brand-row .tag:nth-child(2){transform:rotate(-1.5deg);}
+  .brand-row .tag:nth-child(3){transform:rotate(1deg);}
+  .brand-row .tag:nth-child(4){transform:rotate(-1deg);}
+
+  /* ---------- Categories ---------- */
+  .cat-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .cat-card{background:var(--paper); padding:34px 20px; text-align:center; transition:background .18s ease;}
+  .cat-card:hover{background:var(--paper-2);}
+  .cat-card svg{margin:0 auto 18px; width:44px; height:44px;}
+  .cat-card .mono{font-size:11.5px; color:var(--muted);}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr .8fr; gap:64px; align-items:center;}
+  .about p{font-size:18px; max-width:52ch;}
+  .about p + p{margin-top:16px; color:var(--muted); font-size:16px;}
+  .badge-card{
+    border:1.5px solid var(--ink); padding:34px; background:var(--paper-2);
+    transform:rotate(-1.2deg);
+  }
+  .badge-card h3{font-size:30px; margin-bottom:10px;}
+  .badge-card p{margin:0; color:var(--muted); font-size:14px;}
+
+  /* ---------- Location ---------- */
+  .loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1.5px solid var(--ink);}
+  .loc-info{padding:44px; display:flex; flex-direction:column; gap:22px; justify-content:center;}
+  .loc-info .row{display:flex; gap:14px; align-items:flex-start;}
+  .loc-info .row svg{flex-shrink:0; margin-top:2px;}
+  .loc-info .row .label{font-size:11px; color:var(--muted); margin-bottom:3px;}
+  .loc-info .row .val{font-size:16px;}
+  .map-embed{min-height:340px; filter:sepia(12%) saturate(85%);}
+  .map-embed iframe{width:100%; height:100%; min-height:340px; border:0; display:block;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink); color:var(--paper); padding:64px 0 32px;}
+  .foot-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:40px; margin-bottom:48px;}
+  footer h3{font-size:30px; margin-bottom:16px;}
+  footer .mono{font-size:11px; color:#B9AF9C;}
+  .foot-links{list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .foot-links a{font-size:15px; transition:color .15s;}
+  .foot-links a:hover{color:var(--mustard);}
+  .foot-bottom{border-top:1px solid #3A3644; padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12.5px; color:#8B8272;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.is-in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .float{animation:none;}
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  @media (max-width:920px){
+    .hero-grid,.about-grid{grid-template-columns:1fr; gap:40px;}
+    .rack{order:-1; max-width:340px; margin:0 auto;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .loc-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr; gap:28px;}
+    nav ul{display:none;}
+    .menu-btn{display:block;}
+  }
+  @media (max-width:520px){
+    section{padding:60px 0;}
+    .btn{font-size:12px; padding:12px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hairline">
+  <div class="wrap nav-row">
+    <a href="#top" class="logo">FOLLIE <span>MODA GIOVANE</span></a>
+    <nav>
+      <ul>
+        <li><a class="tag" href="#chi-siamo">Chi siamo</a></li>
+        <li><a class="tag" href="#marchi">Marchi</a></li>
+        <li><a class="tag" href="#categorie">Categorie</a></li>
+        <li><a class="tag" href="#dove-siamo">Dove siamo</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn mono">Menu</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="eyebrow tag --coral mono">Cesano Boscone · Via Fratelli Rosselli</div>
+        <h1>MODA GIOVANE<br><span class="line2">SENZA FRONZOLI.</span></h1>
+        <p class="lede">Un negozio di quartiere per chi cerca capi veri, marchi selezionati e qualcuno che ti sa consigliare la taglia giusta. Donna, uomo, accessori, scarpe e borse.</p>
+        <div class="cta-row">
+          <a class="btn --solid" href="https://wa.me/390248602545" target="_blank" rel="noopener">Scrivici su WhatsApp →</a>
+          <a class="btn" href="#dove-siamo">Come arrivare</a>
+        </div>
+        <div class="addr-chip tag mono">Via Fratelli Rosselli, 6 — 20090 Cesano Boscone (MI)</div>
+      </div>
+
+      <div class="rack reveal">
+        <svg viewBox="0 0 340 320" width="340" height="320">
+          <line x1="20" y1="30" x2="320" y2="30" stroke="#221F2B" stroke-width="4"/>
+          <line x1="20" y1="30" x2="20" y2="8" stroke="#221F2B" stroke-width="4"/>
+          <line x1="320" y1="30" x2="320" y2="8" stroke="#221F2B" stroke-width="4"/>
+
+          <g class="float" style="--r:-4deg" transform="rotate(-4 60 80)">
+            <line x1="60" y1="30" x2="60" y2="55" stroke="#221F2B" stroke-width="2"/>
+            <path d="M60 55 L30 100 L30 190 L90 190 L90 100 Z" fill="#3A5A80"/>
+            <path d="M42 100 L60 78 L78 100" fill="none" stroke="#F1E7D6" stroke-width="3"/>
+          </g>
+
+          <g class="float --d2" style="--r:3deg" transform="rotate(3 150 90)">
+            <line x1="150" y1="30" x2="150" y2="58" stroke="#221F2B" stroke-width="2"/>
+            <path d="M150 58 L118 96 L124 210 L176 210 L182 96 Z" fill="#E8503A"/>
+          </g>
+
+          <g class="float --d3" style="--r:-2deg" transform="rotate(-2 240 85)">
+            <line x1="240" y1="30" x2="240" y2="54" stroke="#221F2B" stroke-width="2"/>
+            <path d="M240 54 L210 92 L216 180 L264 180 L270 92 Z" fill="#E3A72E"/>
+            <path d="M222 92 L240 74 L258 92" fill="none" stroke="#221F2B" stroke-width="3"/>
+          </g>
+
+          <g transform="rotate(8 260 200)">
+            <rect x="252" y="196" width="46" height="30" rx="1" fill="#F1E7D6" stroke="#221F2B" stroke-width="2"/>
+            <circle cx="262" cy="206" r="2.5" fill="#221F2B"/>
+            <line x1="252" y1="196" x2="240" y2="182" stroke="#221F2B" stroke-width="2"/>
+            <text x="258" y="218" font-family="IBM Plex Mono" font-size="8" fill="#221F2B">NEW</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="hairline reveal" id="marchi">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>I marchi<br>che trattiamo</h2>
+        <div class="num mono">Selezione in negozio</div>
+      </div>
+      <div class="brand-row">
+        <span class="tag mono">Blue Joint</span>
+        <span class="tag mono">Cristina Gavioli</span>
+        <span class="tag mono">Navigare</span>
+        <span class="tag mono">Urban Ring</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="hairline" id="categorie">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Cosa trovi<br>in negozio</h2>
+        <div class="num mono">5 reparti</div>
+      </div>
+      <div class="cat-grid reveal">
+        <div class="cat-card">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#221F2B" stroke-width="2"><path d="M15 8 L22 4 L29 8 L34 14 L28 18 L28 40 L16 40 L16 18 L10 14 Z"/></svg>
+          <div class="mono">Donna</div>
+        </div>
+        <div class="cat-card">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#221F2B" stroke-width="2"><path d="M14 9 L22 5 L30 9 L36 15 L30 19 L30 39 L14 39 L14 19 L8 15 Z"/></svg>
+          <div class="mono">Uomo</div>
+        </div>
+        <div class="cat-card">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#221F2B" stroke-width="2"><rect x="10" y="16" width="24" height="20" rx="2"/><path d="M16 16 V12 A6 6 0 0 1 28 12 V16"/></svg>
+          <div class="mono">Accessori</div>
+        </div>
+        <div class="cat-card">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#221F2B" stroke-width="2"><path d="M6 30 Q10 22 18 24 L26 26 Q34 27 38 32 L38 34 L6 34 Z"/><line x1="6" y1="34" x2="38" y2="34"/></svg>
+          <div class="mono">Scarpe</div>
+        </div>
+        <div class="cat-card">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#221F2B" stroke-width="2"><rect x="10" y="16" width="24" height="20" rx="2"/><path d="M16 16 V12 A6 6 0 0 1 28 12 V16"/><line x1="10" y1="24" x2="34" y2="24"/></svg>
+          <div class="mono">Borse</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hairline" id="chi-siamo">
+    <div class="wrap about-grid">
+      <div class="about reveal">
+        <div class="eyebrow tag --denim mono" style="margin-bottom:22px;">Chi siamo</div>
+        <p>Follie Moda Giovane è un negozio a conduzione diretta nel cuore di Cesano Boscone: niente commesse che ti seguono a distanza, solo chi ti aiuta davvero a scegliere.</p>
+        <p>Capi selezionati stagione dopo stagione, dalla taglia comoda al pezzo per l'occasione. Ci trovi dove sei sempre passato: Via Fratelli Rosselli, 6.</p>
+      </div>
+      <div class="reveal">
+        <div class="badge-card">
+          <h3>Nel quartiere,<br>per il quartiere.</h3>
+          <p class="mono">Vieni a trovarci in negozio</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dove-siamo">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Dove siamo</h2>
+        <div class="num mono">Cesano Boscone (MI)</div>
+      </div>
+      <div class="loc-grid reveal">
+        <div class="loc-info">
+          <div class="row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#221F2B" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><div class="label mono">Indirizzo</div><div class="val">Via Fratelli Rosselli, 6<br>20090 Cesano Boscone (MI)</div></div>
+          </div>
+          <div class="row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#221F2B" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.4 2.2L8 10.2a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.2-.4c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+            <div><div class="label mono">Telefono</div><div class="val"><a href="tel:+390248602545">02 4860 2545</a></div></div>
+          </div>
+          <div class="row">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#221F2B" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div><div class="label mono">Orari</div><div class="val">Chiamaci per gli orari aggiornati</div></div>
+          </div>
+          <a class="btn --solid" style="align-self:flex-start;" href="https://www.openstreetmap.org/search?query=Via%20Fratelli%20Rosselli%206%20Cesano%20Boscone" target="_blank" rel="noopener">Apri la mappa →</a>
+        </div>
+        <div class="map-embed">
+          <iframe title="Mappa Via Fratelli Rosselli 6, Cesano Boscone" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=9.106%2C45.446%2C9.122%2C45.456&amp;layer=mapnik&amp;marker=45.451%2C9.114"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Follie Moda<br>Giovane</h3>
+        <p class="mono">Via Fratelli Rosselli, 6<br>20090 Cesano Boscone (MI)</p>
+      </div>
+      <div>
+        <div class="mono">Contatti</div>
+        <ul class="foot-links">
+          <li><a href="tel:+390248602545">02 4860 2545</a></li>
+          <li><a href="https://wa.me/390248602545" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mono">Seguici</div>
+        <ul class="foot-links">
+          <li><a href="https://www.facebook.com/folliemodagiovane" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Follie Moda Giovane</span>
+      <span class="mono">Sito demo · non affiliato</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const menuBtn = document.querySelector('.menu-btn');
+  const navUl = document.querySelector('nav ul');
+  menuBtn?.addEventListener('click', () => {
+    const open = navUl.style.display === 'flex';
+    navUl.style.display = open ? 'none' : 'flex';
+    navUl.style.flexDirection = 'column';
+    navUl.style.position = 'fixed';
+    navUl.style.top = '64px';
+    navUl.style.left = '0';
+    navUl.style.right = '0';
+    navUl.style.background = 'var(--paper)';
+    navUl.style.padding = '18px 28px';
+    navUl.style.borderBottom = '1px solid var(--line)';
+  });
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in'));
+  }
+</script>
+
+</body>
+</html>
